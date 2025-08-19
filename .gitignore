@@ -21,6 +21,11 @@ Client/build
 Server/dist
 Server/build
 
+venv/
+
+__pycache__/
+*.pyc
+
 # Local environment files
 *.local
 .env

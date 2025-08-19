@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+smolagents==1.13.0
+requests
+python-dotenv
+pyyaml
+ddgs
