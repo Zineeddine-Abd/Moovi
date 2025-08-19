@@ -20,7 +20,6 @@ def search_movie_by_title(title: str, year: str = "") -> str:
         "apikey": OMDB_API_KEY,
         "s": title,
         "y": year if year else None,
-        "type": "movie"
     }
     params = {k: v for k, v in params.items() if v is not None}
     try:

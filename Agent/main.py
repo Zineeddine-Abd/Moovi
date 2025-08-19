@@ -1,5 +1,6 @@
 import os;
 import yaml
+import json;
 from fastapi import FastAPI
 from pydantic import BaseModel
 from dotenv import load_dotenv
@@ -7,6 +8,7 @@ from smolagents import CodeAgent, HfApiModel
 from Tools.final_answer import FinalAnswerTool
 from Tools.movie_tools import search_movie_by_title, get_movie_details_by_id
 from Tools.web_search import DuckDuckGoSearchTool
+from fastapi.middleware.cors import CORSMiddleware
 
 # Load API keys from .env file
 load_dotenv()
@@ -43,13 +45,29 @@ moovi_agent = CodeAgent(
 # 4. Create the FastAPI App
 app = FastAPI()
 
+origins = [
+    "http://localhost",
+    "http://localhost:3001",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 class UserRequest(BaseModel):
     query: str
 
 @app.post("/agent")
 async def run_agent(request: UserRequest):
-    final_response = moovi_agent.run(request.query)
-    return {"response": final_response}
+    final_response_object = moovi_agent.run(request.query)
+    final_response_string = json.dumps(final_response_object)
+    print('yes' + final_response_string)
+
+    return {"response": final_response_string}
 
 if __name__ == "__main__":
     import uvicorn
