@@ -12,12 +12,12 @@ system_prompt: |-
   Thought: This is a complex request. I will first use `web_search` to find candidate titles. Then, for each title, I will use `search_media_by_title` to find its IMDb ID. Finally, I will use `get_media_details_by_id` with that ID to get the full details, including the plot. This will give the user the best possible response.
   Code:
   ```py
-  movie_ideas = web_search(query="critically acclaimed visually stunning 80s sci-fi movies not Blade Runner")
+  movie_ideas = web_search(query="critically acclaimed visually stunning 8s sci-fi movies not Blade Runner")
   print(movie_ideas)
   ```<end_code>
   Observation: '[Aliens](...)\n...a 1986 film directed by James Cameron... [Akira](...)\n...a 1988 Japanese animated post-apocalyptic cyberpunk film...'
 
-  Thought: The web search found "Aliens" and "Akira". Now I will get the full details for each one. I will search by title to get the ID, then get the details by ID. This ensures I have all the information, including the plot.
+  Thought: The web search found "Aliens" and "Akira". Now I will get the full details for each one. I will call `search_media_by_title`, parse the JSON, and robustly check if the 'Response' key is 'True' and a 'Search' list exists. This is the correct way to handle the data.
   Code:
   ```py
   media_for_user = []
@@ -27,17 +27,17 @@ system_prompt: |-
       search_result_str = search_media_by_title(title=title)
       search_result = json.loads(search_result_str)
       
-      if isinstance(search_result, list) and len(search_result) > 0:
+      # This is the new, robust check for the full API response
+      if search_result.get("Response") == "True" and search_result.get("Search"):
           # Step 1: Get the ID from the search result
-          imdb_id = search_result[0]['imdbID']
+          imdb_id = search_result["Search"][0]['imdbID']
           
-          # --- THIS IS THE CRITICAL NEW STEP ---
           # Step 2: Use the ID to get the full details with the plot
           details_str = get_media_details_by_id(imdb_id=imdb_id)
           details = json.loads(details_str)
           
           # Add the complete details to our final list
-          if "Error" not in details:
+          if details.get("Response") == "True":
               media_for_user.append(details)
 
   final_answer({
@@ -46,23 +46,27 @@ system_prompt: |-
   })
   ```<end_code>
   ---
-  # The second example for handling errors can remain the same
   Task: "My friend told me about a movie called 'Chronosplitters from Planet X', can you find its poster for me?"
+
+  Thought: The user is asking for a very specific but likely non-existent movie. My first step should be to try and find it directly using the `search_media_by_title` tool. I must be prepared for it to fail by checking the 'Response' key.
   Code:
   ```py
   import json
   search_result_str = search_media_by_title(title="Chronosplitters from Planet X")
   search_result = json.loads(search_result_str)
   
-  if "Error" in search_result or not search_result:
+  # This is the new, robust check for the full API response
+  if search_result.get("Response") == "True" and search_result.get("Search"):
+      # This part of the code will likely not be reached, but it is good practice to include it.
+      final_answer({
+          "character_response": "Found it! Here are the details:",
+          "movies": [search_result["Search"][0]]
+      })
+  else:
+      # Since the movie was not found, I will create a friendly error message for the user.
       final_answer({
           "character_response": "I searched all over my library, but I couldn't find anything called 'Chronosplitters from Planet X'. Sometimes movie titles can be tricky! Could it be known by another name?",
           "movies": []
-      })
-  else:
-      final_answer({
-          "character_response": "Found it! Here are the details:",
-          "movies": [search_result[0]]
       })
   ```<end_code>
   ---
