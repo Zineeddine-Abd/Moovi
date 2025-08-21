@@ -4,7 +4,7 @@ export default function SearchBar({ query, setQuery, handleSearch, isLoading }) 
         <div className="mt-8 flex w-full max-w-2xl">
         <input
             type="text"
-            placeholder="Describe a movie or series you want to watch..."
+            placeholder="Describe a movie or a serie or even your mood"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="flex-grow px-4 py-2 rounded-l-2xl bg-[#1A1A1D] text-white h-12 border border-[#333] focus:outline-none focus:ring-2 focus:ring-[#7626d7]"

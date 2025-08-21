@@ -3,6 +3,7 @@ import './App.css'
 import SearchResults from './Components/SearchResults'
 import SearchBar from './Components/SearchBar'
 import MooviCharacter from "./Components/MooviCharacter";
+import Footer from './Components/Footer'
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -88,6 +89,8 @@ function App() {
           movies={movies}
         />
       </div>
+
+      <Footer />
     </div>
   );
 }
