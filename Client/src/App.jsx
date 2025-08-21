@@ -73,22 +73,24 @@ function App() {
   return (
     <div className="min-h-screen pb-10 flex flex-col items-center text-white">
       
-      <MooviCharacter status={status} />
+      <main className="w-full flex flex-col items-center flex-grow">
+        <MooviCharacter status={status} />
 
-      <SearchBar 
-        query={query}
-        setQuery={setQuery}
-        handleSearch={handleSearch}
-        isLoading={isLoading}
-      />
-
-      <div className="mt-10 w-full max-w-2xl">
-        <SearchResults 
+        <SearchBar 
+          query={query}
+          setQuery={setQuery}
+          handleSearch={handleSearch}
           isLoading={isLoading}
-          error={error}
-          movies={movies}
         />
-      </div>
+
+        <div className="mt-10 w-full max-w-2xl">
+          <SearchResults 
+            isLoading={isLoading}
+            error={error}
+            movies={movies}
+          />
+        </div>
+      </main>
 
       <Footer />
     </div>
