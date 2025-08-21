@@ -1,7 +1,7 @@
 export default function MovieCard({ movie }) {
   return (
     <div
-      className="p-4 bg-[#1A1A1D] rounded-2xl shadow-md border border-[#333] hover:border-[#1DB954] transition flex items-start"
+      className="p-4 bg-[#1A1A1D] rounded-2xl shadow-md border border-[#333] hover:border-[#7626d7] transition flex items-start"
     >
       <img 
         src={movie.Poster} 
