@@ -6,7 +6,7 @@ from pydantic import BaseModel
 from dotenv import load_dotenv
 from smolagents import CodeAgent, HfApiModel
 from Tools.final_answer import FinalAnswerTool
-from Tools.movie_tools import search_movie_by_title, get_movie_details_by_id
+from Tools.movie_tools import search_media_by_title, get_media_details_by_id
 from Tools.web_search import DuckDuckGoSearchTool
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -33,8 +33,8 @@ moovi_agent = CodeAgent(
     model=model,
     tools=[
         FinalAnswerTool(), 
-        search_movie_by_title, 
-        get_movie_details_by_id, 
+        search_media_by_title, 
+        get_media_details_by_id, 
         DuckDuckGoSearchTool()
     ],
     prompt_templates=prompt_templates,

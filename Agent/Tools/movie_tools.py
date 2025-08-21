@@ -7,14 +7,14 @@ OMDB_API_KEY = os.getenv("OMDB_API_KEY")
 OMDB_BASE_URL = "http://www.omdbapi.com/"
 
 @tool
-def search_movie_by_title(title: str, year: str = "") -> str:
+def search_media_by_title(title: str, year: str = "") -> str:
     """
-    Searches for movies by their title using the OMDb API. This tool requires a specific movie title to work effectively.
+    Searches for movies or series by their title using the OMDb API.
     Args:
-        title: The exact movie title to search for (e.g., "Inception").
+        title: The exact title to search for (e.g., "Inception", "Breaking Bad").
         year: An optional release year to narrow down the search.
     Returns:
-        A JSON string of search results.
+        The full JSON response string from the OMDb API.
     """
     params = {
         "apikey": OMDB_API_KEY,
@@ -23,14 +23,12 @@ def search_movie_by_title(title: str, year: str = "") -> str:
     }
     params = {k: v for k, v in params.items() if v is not None}
     try:
-        # Added a 10-second timeout for robustness
         response = requests.get(OMDB_BASE_URL, params=params, timeout=10)
-        response.raise_for_status() # Raise an exception for bad status codes (like 404 or 500)
-        data = response.json()
-        if data.get("Response") == "True":
-            return json.dumps(data.get("Search", []))
-        else:
-            return json.dumps({"Error": data.get("Error", "Unknown error")})
+        response.raise_for_status()
+        # --- THIS IS THE FIX ---
+        # Return the entire JSON response as a raw string.
+        # This allows the agent to see the "Response": "True" key.
+        return response.text
     except requests.exceptions.Timeout:
         return json.dumps({"Error": "The request to OMDb API timed out."})
     except requests.exceptions.RequestException as e:
@@ -38,13 +36,13 @@ def search_movie_by_title(title: str, year: str = "") -> str:
 
 
 @tool
-def get_movie_details_by_id(imdb_id: str) -> str:
+def get_media_details_by_id(imdb_id: str) -> str:
     """
-    Gets detailed plot information, ratings, and more for a specific movie using its IMDb ID.
+    Gets detailed plot information, ratings, and more for a specific movie or series using its IMDb ID.
     Args:
-        imdb_id: The IMDb ID of the movie (e.g., tt1375666 for Inception).
+        imdb_id: The IMDb ID of the media (e.g., tt1375666 for Inception).
     Returns:
-        A JSON string containing detailed movie information.
+        The full JSON response string from the OMDb API.
     """
     params = {
         "apikey": OMDB_API_KEY,
@@ -52,10 +50,11 @@ def get_movie_details_by_id(imdb_id: str) -> str:
         "plot": "full"
     }
     try:
-        # Added a 10-second timeout
         response = requests.get(OMDB_BASE_URL, params=params, timeout=10)
         response.raise_for_status()
-        return json.dumps(response.json())
+        # --- THIS IS THE FIX ---
+        # Return the entire JSON response as a raw string.
+        return response.text
     except requests.exceptions.Timeout:
         return json.dumps({"Error": "The request to OMDb API timed out."})
     except requests.exceptions.RequestException as e:
