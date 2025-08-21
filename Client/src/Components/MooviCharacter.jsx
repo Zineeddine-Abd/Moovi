@@ -45,7 +45,7 @@ export default function MooviCharacter({ status }) {
   };
 
   return (
-    <div className="mt-20 h-70 w-70 flex items-center justify-center neon-border">
+    <div className="mt-5 h-50 w-50 md:h-70 md:w-70 flex items-center justify-center neon-border">
       {isPlayingVideo ? (
         <video
           key={videoSrc}

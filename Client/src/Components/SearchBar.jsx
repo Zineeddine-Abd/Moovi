@@ -1,7 +1,7 @@
 export default function SearchBar({ query, setQuery, handleSearch, isLoading }) {
     
     return (
-        <div className="mt-8 flex w-full max-w-2xl">
+        <div className="mt-8 flex w-full max-w-2xl mx-4 md:mx-0">
         <input
             type="text"
             placeholder="Describe a movie or a serie or even your mood"
