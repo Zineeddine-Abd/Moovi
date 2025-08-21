@@ -1,1 +1,47 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
+@layer base {
+  body {
+    background-color: #0D0D0F;
+    background-image: radial-gradient(
+      circle at top center,
+      #7626d7 0%,
+      #4A0E97 30%,
+      #0D0D0F 70%
+    );
+  }
+}
+
+.font-orbitron {
+  font-family: "Orbitron", sans-serif;
+}
+
+.neon-border {
+  border-radius: 1rem;
+
+  box-shadow:
+    0 0 5px #a259ff,
+    0 0 10px #a259ff,
+    0 0 20px #a259ff,
+    0 0 30px #7626d7;
+
+  animation: pulse-glow 2.5s infinite alternate;
+}
+
+@keyframes pulse-glow {
+  from {
+    box-shadow:
+      0 0 5px #a259ff,
+      0 0 10px #a259ff,
+      0 0 20px #a259ff,
+      0 0 30px #7626d7;
+  }
+  to {
+    box-shadow:
+      0 0 10px #be93ff,
+      0 0 20px #be93ff,
+      0 0 30px #be93ff,
+      0 0 40px #a259ff;
+  }
+}

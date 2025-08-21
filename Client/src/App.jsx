@@ -40,9 +40,9 @@ function App() {
       setMovies(foundMovies);
 
       if (foundMovies.length > 0) {
-        setStatus('success'); // <-- Moovi is proud of the results!
+        setStatus('success');
       } else {
-        setStatus('idle'); // <-- Moovi is waiting again if no results found
+        setStatus('idle');
       }
 
     } catch (err) {
@@ -53,11 +53,10 @@ function App() {
     }
   };
 
-  // If the app hasn't started yet, show the welcome button.
   if (status === 'pre-welcome') {
     return (
       <div className="min-h-screen bg-[#0D0D0F] flex flex-col items-center justify-center text-white">
-        <img src="/moovi-static.png" alt="Moovi" className="w-40 h-40 rounded-2xl object-cover mb-8" />
+        <img src="/moovi-static.png" alt="Moovi" className="w-70 h-70 rounded-2xl object-cover mb-8" />
         <h1 className="text-3xl font-bold mb-4">Welcome to Moovi</h1>
         <p className="text-lg text-gray-400 mb-8">Your personal AI movie and series guide.</p>
         <button
@@ -70,9 +69,8 @@ function App() {
     );
   }
 
-  // Otherwise, show the main application.
   return (
-    <div className="min-h-screen pb-10 bg-[#0D0D0F] flex flex-col items-center text-white">
+    <div className="min-h-screen pb-10 flex flex-col items-center text-white">
       
       <MooviCharacter status={status} />
 

@@ -40,13 +40,12 @@ export default function MooviCharacter({ status }) {
     };
   }, [status]);
 
-  // This function is called when a video finishes playing
   const handleVideoEnd = () => {
     setIsPlayingVideo(false);
   };
 
   return (
-    <div className="mt-20 h-70 w-70 flex items-center justify-center">
+    <div className="mt-20 h-70 w-70 flex items-center justify-center neon-border">
       {isPlayingVideo ? (
         <video
           key={videoSrc}
