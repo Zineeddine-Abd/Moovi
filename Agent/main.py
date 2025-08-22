@@ -9,6 +9,7 @@ from smolagents import OpenAIServerModel
 from Tools.final_answer import FinalAnswerTool
 from Tools.movie_tools import search_media_by_title, get_media_details_by_id
 from Tools.web_search import DuckDuckGoSearchTool
+from Tools.trailer_finder_tool import find_youtube_trailer
 from fastapi.middleware.cors import CORSMiddleware
 
 # Load API keys from .env file
@@ -38,7 +39,8 @@ moovi_agent = CodeAgent(
         FinalAnswerTool(), 
         search_media_by_title, 
         get_media_details_by_id, 
-        DuckDuckGoSearchTool()
+        DuckDuckGoSearchTool(),
+        find_youtube_trailer,
     ],
     prompt_templates=prompt_templates,
     max_steps=8, 

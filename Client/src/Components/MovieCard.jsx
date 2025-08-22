@@ -1,5 +1,5 @@
 export default function MovieCard({ movie }) {
-
+  
   const getRating = (source) => {
     const rating = movie.Ratings?.find(r => r.Source === source);
     return rating ? rating.Value : null;
@@ -7,11 +7,22 @@ export default function MovieCard({ movie }) {
 
   const rottenTomatoesScore = getRating("Rotten Tomatoes");
   const imdbScore = getRating("Internet Movie Database");
+  const trailerUrl = movie.TrailerURL;
 
   return (
-    <div
-      className="p-4 bg-[#1A1A1D] rounded-2xl shadow-md border border-[#333] hover:border-[#7626d7] transition"
-    >
+    <div className="relative p-4 bg-[#1A1A1D] rounded-2xl shadow-md border border-[#333] hover:border-[#7626d7] transition">
+      
+      {trailerUrl && (
+        <a 
+          href={trailerUrl} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="absolute top-4 right-4 px-3 py-1 text-xs font-bold text-black bg-yellow-500 rounded-full hover:bg-yellow-300 transition"
+        >
+          See Trailer
+        </a>
+      )}
+
       <div className="flex items-start">
         <img 
           src={movie.Poster} 
@@ -20,7 +31,7 @@ export default function MovieCard({ movie }) {
           onError={(e) => { e.target.src = 'https://via.placeholder.com/80x112?text=No+Image'; }}
         />
         <div>
-          <h2 className="text-xl font-semibold">{movie.Title}</h2>
+          <h2 className="text-xl font-semibold pr-24">{movie.Title}</h2>
           <p className="text-[#B3B3B3] mb-1">{movie.Year}</p> 
           <p className="text-[#B3B3B3] mb-2">Runtime : {movie.Runtime}</p>
           
@@ -38,6 +49,7 @@ export default function MovieCard({ movie }) {
               </div>
             )}
           </div>
+
         </div>
       </div>
       
