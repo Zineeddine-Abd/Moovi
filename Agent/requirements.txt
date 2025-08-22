@@ -1,6 +1,6 @@
 fastapi
 uvicorn
-smolagents==1.13.0
+smolagents[openai]
 requests
 python-dotenv
 pyyaml
