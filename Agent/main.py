@@ -4,7 +4,8 @@ import json;
 from fastapi import FastAPI
 from pydantic import BaseModel
 from dotenv import load_dotenv
-from smolagents import CodeAgent, HfApiModel
+from smolagents import CodeAgent
+from smolagents import OpenAIServerModel
 from Tools.final_answer import FinalAnswerTool
 from Tools.movie_tools import search_media_by_title, get_media_details_by_id
 from Tools.web_search import DuckDuckGoSearchTool
@@ -14,14 +15,16 @@ from fastapi.middleware.cors import CORSMiddleware
 load_dotenv()
 
 # 1. Initialize the Model
-# Read the HF_TOKEN from the environment
-hf_token = os.getenv("HF_TOKEN")
+# 1. Read the Gemini API Key from the environment
+gemini_api_key = os.getenv("GEMINI_API_KEY")
 
-model = HfApiModel(
-    model_id='Qwen/Qwen2.5-Coder-32B-Instruct',
-    max_tokens=2096,
+# 2. Initialize the GoogleGenerativeAIModel
+model = OpenAIServerModel(
+    model_id="gemini-2.0-flash",
+    api_base="https://generativelanguage.googleapis.com/v1beta/openai/",
+    api_key=gemini_api_key,
+    max_tokens=8192,
     temperature=0.5,
-    token=hf_token # Pass the token to the model
 )
 
 # 2. Load Prompt Templates
