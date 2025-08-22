@@ -1,9 +1,16 @@
 import MovieCard from "./MovieCard";
+import SkeletonCard from "./SkeletonCard";
 
 export default function SearchResults({ isLoading, error, movies }) {
   
     if (isLoading) {
-        return <p className="text-center text-[#B3B3B3]">Moovi is searching the cosmos for you...</p>;
+        return (
+            <div className="grid gap-4">
+                {[...Array(3)].map((_, index) => (
+                    <SkeletonCard key={index} />
+                ))}
+            </div>
+        )
     }
 
     if (error) {
