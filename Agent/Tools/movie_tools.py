@@ -25,9 +25,7 @@ def search_media_by_title(title: str, year: str = "") -> str:
     try:
         response = requests.get(OMDB_BASE_URL, params=params, timeout=10)
         response.raise_for_status()
-        # --- THIS IS THE FIX ---
-        # Return the entire JSON response as a raw string.
-        # This allows the agent to see the "Response": "True" key.
+        
         return response.text
     except requests.exceptions.Timeout:
         return json.dumps({"Error": "The request to OMDb API timed out."})
@@ -52,8 +50,7 @@ def get_media_details_by_id(imdb_id: str) -> str:
     try:
         response = requests.get(OMDB_BASE_URL, params=params, timeout=10)
         response.raise_for_status()
-        # --- THIS IS THE FIX ---
-        # Return the entire JSON response as a raw string.
+       
         return response.text
     except requests.exceptions.Timeout:
         return json.dumps({"Error": "The request to OMDb API timed out."})
