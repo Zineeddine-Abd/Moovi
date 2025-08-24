@@ -57,7 +57,7 @@ function App() {
   if (status === 'pre-welcome') {
     return (
       <div className="min-h-screen bg-[#0D0D0F] flex flex-col items-center justify-center text-white">
-        <img src="/moovi-static.png" alt="Moovi" className="h-50 w-50 md:h-70 md:w-70 rounded-2xl object-cover mb-8" />
+        <img src="/moovi-static.png" alt="Moovi" className="h-50 w-50 md:h-70 md:w-70 rounded-2xl object-cover mb-8 neon-border" />
         <h1 className="text-3xl font-bold mb-4">Welcome to Moovi</h1>
         <p className="text-lg text-gray-400 mb-8">Your personal AI movie and series guide.</p>
         <button
