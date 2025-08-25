@@ -4,7 +4,6 @@ import SearchResults from './Components/SearchResults'
 import SearchBar from './Components/SearchBar'
 import MooviCharacter from "./Components/MooviCharacter";
 import Footer from './Components/Footer'
-import CharacterResponse from "./Components/CharacterResponse";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -12,7 +11,6 @@ function App() {
   const [isLoading, setIsLoading] = useState(false); 
   const [error, setError] = useState(null);
   const [status, setStatus] = useState('pre-welcome');
-   const [characterResponse, setCharacterResponse] = useState("");
 
   const handleStart = () => {
     setStatus('welcome');
@@ -23,7 +21,6 @@ function App() {
     setIsLoading(true);
     setError(null);
     setMovies([]);
-    setCharacterResponse("");
     setStatus('searching');
 
     try {
@@ -42,7 +39,6 @@ function App() {
       const finalAnswerObject = JSON.parse(data.response);
       const foundMovies = finalAnswerObject.movies || [];
 
-      setCharacterResponse(finalAnswerObject.character_response || "");
       setMovies(foundMovies);
 
       if (foundMovies.length > 0) {
@@ -94,8 +90,6 @@ function App() {
         />
 
         <div className="mt-10 w-full max-w-2xl">
-
-          <CharacterResponse text={characterResponse} />
 
           <SearchResults 
             isLoading={isLoading}
