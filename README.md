@@ -1,12 +1,96 @@
-# React + Vite
+# 🎬 Moovi – AI Movie & Series Recommendation Agent  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Moovi is an **AI-powered recommendation agent** that suggests movies and series in an interactive way.  
+What makes Moovi different is its **AI-generated character** that interacts with users during their search journey, making recommendations more engaging and fun.  
 
-Currently, two official plugins are available:
+This project was built to combine my knowledge of **frontend, backend, API integration, AI agents, and prompt engineering** into one complete application.  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✨ Features  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🎭 **Interactive AI character** that reacts to user queries.  
+- ⚡ **Modern frontend** built with React + Vite plus tailwind css for styling.  
+- 🖥️ **Backend powered by Express.js** and a **FastAPI agent backend**.  
+- 🧠 **SmolAgent (Hugging Face)** as the reasoning engine, guided by a carefully crafted system prompt.  
+- 🎥 **OMDb API** integration for detailed movie/series data (title, runtime, posters, etc.).  
+- 🔎 **DuckDuckGo Search** integration for fetching external suggestions.  
+- 🧩 **Clean architecture** combining AI, APIs, and agent tools in one project.  
+
+---
+
+## 🛠️ Tech Stack  
+
+### Frontend  
+- [React](https://react.dev/) + [Vite](https://vitejs.dev/)  
+- TailwindCSS (for modern, clean UI)  
+
+### Backend  
+- [Express.js](https://expressjs.com/) – REST API backend  
+- [FastAPI](https://fastapi.tiangolo.com/) – Agent backend powered with SmolAgent  
+- [SmolAgent](https://huggingface.co/docs/smolagents/index) – Agent framework for reasoning  
+- OMDb API – Movie/Series metadata  
+- DuckDuckGo Search – Suggestion engine  
+
+### Others  
+- Prompt Engineering (custom system prompt to guide the agent’s responses)  
+- Version Control with Git/GitHub  
+
+---
+
+## 🚀 Getting Started  
+
+### 1. Clone the repository  
+```bash
+git clone https://github.com/your-username/moovi.git
+cd moovi
+```
+
+### 2. Frontend (Client) Setup  
+```bash
+cd Client
+npm install
+npm run dev
+```
+Create a .env file in your Client project root with the following keys:
+```bash
+VITE_API_URL=http://localhost:3001
+```
+
+### 3. Backend (Server) Setup  
+```bash
+cd Server
+npm install
+node index.js
+```
+Create a .env file in your Server project root with the following keys:
+```bash
+PORT=3001
+AGENT_API_URL=http://127.0.0.1:8000/agent
+CLIENT_ORIGIN_URL=http://localhost:5173
+```
+
+### 4. Agent Backend Setup
+```bash
+# Create venv
+python -m venv venv  
+
+# Activate venv
+# On Linux/Mac
+source venv/bin/activate  
+
+# On Windows
+venv\Scripts\activate
+```
+```bash
+cd agent-backend
+pip install -r requirements.txt
+python main.py
+```
+Create a .env file in your Agent project root with the following keys:
+```bash
+OMDB_API_KEY="your_omdb_api_key"
+GEMINI_API_KEY="your_gemeni_api_key"
+YOUTUBE_API_KEY="yout_youtube_api_key"
+ORIGINS="http://localhost,http://localhost:3001"
+```
