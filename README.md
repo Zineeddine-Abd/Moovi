@@ -1,9 +1,12 @@
 # 🎬 Moovi – AI Movie & Series Recommendation Agent  
-
 Moovi is an **AI-powered recommendation agent** that suggests movies and series in an interactive way.  
+
 What makes Moovi different is its **AI-generated character** that interacts with users during their search journey, making recommendations more engaging and fun.  
 
 This project was built to combine my knowledge of **frontend, backend, API integration, AI agents, and prompt engineering** into one complete application.  
+<p align="center">
+  <img src="./moovi.gif" alt="Moovi demo" width="400"/>
+</p>
 
 ---
 
