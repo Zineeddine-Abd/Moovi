@@ -75,6 +75,8 @@ CLIENT_ORIGIN_URL=http://localhost:5173
 
 ### 4. Agent Backend Setup
 ```bash
+cd Agent
+
 # Create venv
 python -m venv venv  
 
@@ -86,7 +88,6 @@ source venv/bin/activate
 venv\Scripts\activate
 ```
 ```bash
-cd agent-backend
 pip install -r requirements.txt
 python main.py
 ```
