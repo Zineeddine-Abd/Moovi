@@ -12,6 +12,8 @@ function App() {
   const [error, setError] = useState(null);
   const [status, setStatus] = useState('pre-welcome');
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   const handleStart = () => {
     setStatus('welcome');
   };
@@ -24,7 +26,7 @@ function App() {
     setStatus('searching');
 
     try {
-      const response = await fetch('http://localhost:3001/api/agent', {
+      const response = await fetch(`${apiUrl}/api/agent`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: query }),

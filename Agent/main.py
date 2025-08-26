@@ -50,10 +50,7 @@ moovi_agent = CodeAgent(
 # 4. Create the FastAPI App
 app = FastAPI()
 
-origins = [
-    "http://localhost",
-    "http://localhost:3001",
-]
+origins = os.getenv("ORIGINS", "").split(",")
 
 app.add_middleware(
     CORSMiddleware,
