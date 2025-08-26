@@ -1,5 +1,5 @@
 # 🎬 Moovi – AI Movie & Series Recommendation Agent  
-Moovi is an **AI-powered recommendation agent** that suggests movies and series in an interactive way.  
+Moovi is an **AI-powered recommendation agent** that suggests movies and series in an interactive way based on users mood, vibe and preferences.  
 
 What makes Moovi different is its **AI-generated character** that interacts with users during their search journey, making recommendations more engaging and fun.  
 
@@ -18,7 +18,7 @@ This project was built to combine my knowledge of **frontend, backend, API integ
 - 🧠 **SmolAgent (Hugging Face)** as the reasoning engine, guided by a carefully crafted system prompt.  
 - 🎥 **OMDb API** integration for detailed movie/series data (title, runtime, posters, etc.).  
 - 🔎 **DuckDuckGo Search** integration for fetching external suggestions.  
-- 🧩 **Clean architecture** combining AI, APIs, and agent tools in one project.  
+- 🧩 **Clean architecture** combining Fronted, Backend, and agent environement in one project.  
 
 ---
 
@@ -33,11 +33,11 @@ This project was built to combine my knowledge of **frontend, backend, API integ
 - [FastAPI](https://fastapi.tiangolo.com/) – Agent backend powered with SmolAgent  
 - [SmolAgent](https://huggingface.co/docs/smolagents/index) – Agent framework for reasoning  
 - OMDb API – Movie/Series metadata  
-- DuckDuckGo Search – Suggestion engine  
+- DuckDuckGo Search – search engine  
 
 ### Others  
 - Prompt Engineering (custom system prompt to guide the agent’s responses)  
-- Version Control with Git/GitHub  
+- Ai Character creation using Adobe express and ElevenLabs 
 
 ---
 
@@ -97,3 +97,14 @@ GEMINI_API_KEY="your_gemeni_api_key"
 YOUTUBE_API_KEY="yout_youtube_api_key"
 ORIGINS="http://localhost,http://localhost:3001"
 ```
+## 🔮 Future Improvements
+
+- Enhance the AI character’s animations and interactions and make it dynamic dpendent on the user query.
+
+- Add support for streaming platform availability.
+
+- Improve recommendation accuracy with more data sources, tools, and more powerful system prompt.
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to fork this repo, open issues, and submit pull requests.
